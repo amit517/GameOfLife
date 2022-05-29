@@ -9,22 +9,28 @@ import android.graphics.Rect
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.*
 import kotlin.math.max
 import kotlin.math.min
 
 @SuppressLint("ViewConstructor")
-class GameView(context: Context?, width: Float, height: Float, game: GameOfLife): View(
-        context), ScaleGestureDetector.OnScaleGestureListener {
+class GameView @AssistedInject constructor(
+    @ApplicationContext context: Context?,
+    @Assisted game: GameOfLife,
+) : View(
+    context), ScaleGestureDetector.OnScaleGestureListener {
 
     private var gameWorld = game.world
 
-    private val worldWidth = width
-    private val worldHeight = height
+    private val worldWidth = 40F
+    private val worldHeight = 60F
     private var columns = worldWidth
     private var rows = worldHeight
-    private var cellWidth = getWidth() / columns
-    private var cellHeight = getHeight() / rows
+    private var cellWidth = width / columns
+    private var cellHeight = height / rows
 
     private val scaleDetector = ScaleGestureDetector(context, this)
     var scaleFactor = 1.0f
@@ -72,7 +78,7 @@ class GameView(context: Context?, width: Float, height: Float, game: GameOfLife)
             for (j in 0..(rows - 1).toInt()) {
                 if (gameWorld.isAlive(Cell(i, j))) {
                     val cellRect = Rect((i * cellWidth).toInt(), (j * cellHeight).toInt(),
-                            ((i + 1) * cellWidth).toInt(), ((j + 1) * cellHeight).toInt())
+                        ((i + 1) * cellWidth).toInt(), ((j + 1) * cellHeight).toInt())
                     canvas.drawRect(cellRect, cellPaint)
                 }
             }

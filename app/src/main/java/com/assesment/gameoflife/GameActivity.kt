@@ -4,20 +4,22 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.assesment.base.view.BaseActivity
 import com.assesment.gameoflife.databinding.ActivityGameBinding
+import com.assesment.gameoflife.di.GameViewFactory
 import com.assesment.gameoflife.gamehelper.GameView
-import com.assesment.gameoflife.gamehelper.GameWorld
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class GameActivity : BaseActivity<ActivityGameBinding>() {
-    private val viewModel: GameActivityVM by viewModels() {
-        GameActivityVMF(GameWorld())
-    }
+    @Inject
+    lateinit var gameViewFactory: GameViewFactory
+
+    private val viewModel: GameActivityVM by viewModels()
 
     override fun getLayout(): Int = R.layout.activity_game
 
     override fun initOnCreateView() {
-        val gameView = GameView(this, 40F, 60F, viewModel.game)
+        val gameView = gameViewFactory.createGameView(viewModel.game)
         bindingView.contentFrame.addView(gameView)
         bindingView.btnPlay.setOnClickListener { startOrPauseGame(gameView) }
     }

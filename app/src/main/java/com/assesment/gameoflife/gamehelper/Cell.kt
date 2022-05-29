@@ -1,7 +1,9 @@
 package com.assesment.gameoflife.gamehelper
 
+import javax.inject.Inject
 
-data class Cell(val xCoordinate: Int, val yCoordinate: Int) {
+
+data class Cell @Inject constructor(val xCoordinate: Int, val yCoordinate: Int) {
 
     override fun equals(other: Any?): Boolean {
         val cell: Cell = other as Cell
