@@ -4,6 +4,8 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.assesment.base.view.BaseActivity
 import com.assesment.gameoflife.databinding.ActivityGameBinding
+import com.assesment.gameoflife.gamehelper.GameView
+import com.assesment.gameoflife.gamehelper.GameWorld
 
 class GameActivity : BaseActivity<ActivityGameBinding>() {
     private val viewModel: GameActivityVM by viewModels() {

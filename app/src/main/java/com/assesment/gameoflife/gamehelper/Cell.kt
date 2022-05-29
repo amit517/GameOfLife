@@ -1,4 +1,4 @@
-package com.assesment.gameoflife
+package com.assesment.gameoflife.gamehelper
 
 
 data class Cell(val xCoordinate: Int, val yCoordinate: Int) {

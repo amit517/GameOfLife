@@ -1,4 +1,4 @@
-package com.assesment.gameoflife
+package com.assesment.gameoflife.gamehelper
 
 import java.util.*
 

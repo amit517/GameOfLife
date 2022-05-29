@@ -2,6 +2,9 @@ package com.assesment.gameoflife
 
 import androidx.lifecycle.viewModelScope
 import com.assesment.base.viewmodel.BaseViewModel
+import com.assesment.gameoflife.gamehelper.GameOfLife
+import com.assesment.gameoflife.gamehelper.GameView
+import com.assesment.gameoflife.gamehelper.GameWorld
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
