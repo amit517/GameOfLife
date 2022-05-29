@@ -3,9 +3,10 @@ package com.assesment.gameoflife.gamehelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class GameOfLife(var world: GameWorld) {
-    var isRunning = true
+class GameOfLife @Inject constructor(var world: GameWorld) {
+    var isRunning = false
 
     private fun nextGeneration(): GameWorld {
         val nextWorld = world.nextGeneration()
