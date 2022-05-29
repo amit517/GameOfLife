@@ -14,7 +14,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 @SuppressLint("ViewConstructor")
-class GameViewKotlin(context: Context?, width: Float, height: Float, game: GameOfLifeKotlin): View(
+class GameViewKotlin(context: Context?, width: Float, height: Float, game: GameOfLife): View(
         context), ScaleGestureDetector.OnScaleGestureListener {
 
     var gameWorld = game.world
@@ -70,7 +70,7 @@ class GameViewKotlin(context: Context?, width: Float, height: Float, game: GameO
     private fun drawCells(canvas: Canvas) {
         for (i in 0..(colums - 1).toInt()) {
             for (j in 0..(rows - 1).toInt()) {
-                if (gameWorld.isAlive(CellKotlin(i, j))) {
+                if (gameWorld.isAlive(Cell(i, j))) {
                     val cellRect = Rect((i * cellWidth).toInt(), (j * cellHeight).toInt(),
                             ((i + 1) * cellWidth).toInt(), ((j + 1) * cellHeight).toInt())
                     canvas.drawRect(cellRect, cellPaint)
@@ -97,7 +97,7 @@ class GameViewKotlin(context: Context?, width: Float, height: Float, game: GameO
             val column = event.x / cellWidth
             val row = event.y / cellHeight
 
-            gameWorld.addCell(CellKotlin(column.toInt(), row.toInt()))
+            gameWorld.addCell(Cell(column.toInt(), row.toInt()))
             invalidate()
         }
 
@@ -110,7 +110,7 @@ class GameViewKotlin(context: Context?, width: Float, height: Float, game: GameO
         return true
     }
 
-    fun nextGeneration(world: GameWorldKotlin) {
+    fun nextGeneration(world: GameWorld) {
         gameWorld = world
         invalidate()
     }

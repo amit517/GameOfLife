@@ -4,10 +4,10 @@ import androidx.core.content.ContextCompat
 import com.assesment.base.view.BaseActivity
 import com.assesment.gameoflife.databinding.ActivityGameBinding
 
-class GameActivityKotlin : BaseActivity<ActivityGameBinding>() {
+class GameActivity : BaseActivity<ActivityGameBinding>() {
 
-    private val gameWorld = GameWorldKotlin()
-    private val game = GameOfLifeKotlin(gameWorld)
+    private val gameWorld = GameWorld()
+    private val game = GameOfLife(gameWorld)
 
     override fun getLayout(): Int = R.layout.activity_game
 

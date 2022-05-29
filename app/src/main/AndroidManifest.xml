@@ -12,7 +12,7 @@
         android:theme="@style/Theme.GameOfLife">
 
         <activity
-            android:name=".GameActivityKotlin"
+            android:name=".GameActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

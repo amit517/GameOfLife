@@ -2,11 +2,11 @@ package com.assesment.gameoflife
 
 import android.os.Handler
 
-class GameOfLifeKotlin(var world: GameWorldKotlin) {
+class GameOfLife(var world: GameWorld) {
     var isRunning = true
     private val myOffMainThreadHandler: Handler = Handler()
 
-    private fun nextGeneration(): GameWorldKotlin {
+    private fun nextGeneration(): GameWorld {
         val nextWorld = world.nextGeneration()
         world = nextWorld
 

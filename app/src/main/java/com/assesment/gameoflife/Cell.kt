@@ -1,10 +1,10 @@
 package com.assesment.gameoflife
 
 
-data class CellKotlin(val xCoordinate: Int, val yCoordinate: Int) {
+data class Cell(val xCoordinate: Int, val yCoordinate: Int) {
 
     override fun equals(other: Any?): Boolean {
-        val cell: CellKotlin = other as CellKotlin
+        val cell: Cell = other as Cell
 
         if (xCoordinate != cell.xCoordinate) return false
         return yCoordinate == cell.yCoordinate
