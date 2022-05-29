@@ -11,14 +11,14 @@ import android.view.ScaleGestureDetector
 import android.view.View
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.qualifiers.ActivityContext
 import java.util.*
 import kotlin.math.max
 import kotlin.math.min
 
 @SuppressLint("ViewConstructor")
 class GameView @AssistedInject constructor(
-    @ApplicationContext context: Context?,
+    @ActivityContext context: Context,
     @Assisted game: GameOfLife,
 ) : View(
     context), ScaleGestureDetector.OnScaleGestureListener {
