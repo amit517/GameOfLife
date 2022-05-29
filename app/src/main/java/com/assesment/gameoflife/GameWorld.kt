@@ -1,9 +1,10 @@
 package com.assesment.gameoflife
 
 import java.util.*
+import javax.inject.Inject
 
 
-class GameWorld(private val aliveCells: HashSet<Cell> = hashSetOf()) {
+class GameWorld @Inject constructor(private val aliveCells: HashSet<Cell> = hashSetOf()) {
 
     fun addCell(cell: Cell) = aliveCells.add(cell)
 

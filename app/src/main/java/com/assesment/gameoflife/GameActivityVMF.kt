@@ -2,8 +2,9 @@ package com.assesment.gameoflife
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import javax.inject.Inject
 
-class GameActivityVMF(private val gameWorld: GameWorld) : ViewModelProvider.Factory {
+class GameActivityVMF @Inject constructor(private val gameWorld: GameWorld) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(GameActivityVM::class.java))
             return GameActivityVM(gameWorld) as T

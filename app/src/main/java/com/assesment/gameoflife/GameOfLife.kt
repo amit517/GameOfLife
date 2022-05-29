@@ -1,8 +1,9 @@
 package com.assesment.gameoflife
 
 import android.os.Handler
+import javax.inject.Inject
 
-class GameOfLife(var world: GameWorld) {
+class GameOfLife @Inject constructor(var world: GameWorld) {
     var isRunning = true
     private val myOffMainThreadHandler: Handler = Handler()
 
