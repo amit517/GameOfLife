@@ -1,4 +1,4 @@
-package com.assesment.gameoflife
+package com.assesment.gameoflife.gamehelper
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -14,17 +14,17 @@ import kotlin.math.max
 import kotlin.math.min
 
 @SuppressLint("ViewConstructor")
-class GameViewKotlin(context: Context?, width: Float, height: Float, game: GameOfLife): View(
+class GameView(context: Context?, width: Float, height: Float, game: GameOfLife): View(
         context), ScaleGestureDetector.OnScaleGestureListener {
 
-    var gameWorld = game.world
+    private var gameWorld = game.world
 
     private val worldWidth = width
     private val worldHeight = height
-    var colums = worldWidth
-    var rows = worldHeight
-    var cellWidth = getWidth() / colums
-    var cellHeight = getHeight() / rows
+    private var columns = worldWidth
+    private var rows = worldHeight
+    private var cellWidth = getWidth() / columns
+    private var cellHeight = getHeight() / rows
 
     private val scaleDetector = ScaleGestureDetector(context, this)
     var scaleFactor = 1.0f
@@ -38,11 +38,11 @@ class GameViewKotlin(context: Context?, width: Float, height: Float, game: GameO
     }
 
     private fun calculateDimensions() {
-        if (colums < 1 || rows < 1) return
-        colums = worldWidth / scaleFactor
+        if (columns < 1 || rows < 1) return
+        columns = worldWidth / scaleFactor
         rows = worldHeight / scaleFactor
 
-        cellWidth = width / colums
+        cellWidth = width / columns
         cellHeight = height / rows
     }
 
@@ -56,7 +56,7 @@ class GameViewKotlin(context: Context?, width: Float, height: Float, game: GameO
         canvas.drawPaint(backgroundPaint)
         canvas.restore()
 
-        if (colums == 0F || rows == 0F) return
+        if (columns == 0F || rows == 0F) return
 
         drawCells(canvas)
         drawGrid(canvas)
@@ -68,7 +68,7 @@ class GameViewKotlin(context: Context?, width: Float, height: Float, game: GameO
     }
 
     private fun drawCells(canvas: Canvas) {
-        for (i in 0..(colums - 1).toInt()) {
+        for (i in 0..(columns - 1).toInt()) {
             for (j in 0..(rows - 1).toInt()) {
                 if (gameWorld.isAlive(Cell(i, j))) {
                     val cellRect = Rect((i * cellWidth).toInt(), (j * cellHeight).toInt(),
@@ -81,7 +81,7 @@ class GameViewKotlin(context: Context?, width: Float, height: Float, game: GameO
 
     private fun drawGrid(canvas: Canvas) {
         gridPaint.style = Paint.Style.FILL_AND_STROKE
-        for (i in 1..(colums - 1).toInt()) {
+        for (i in 1..(columns - 1).toInt()) {
             canvas.drawLine(i * cellWidth, 0F, i * cellWidth, height.toFloat(), gridPaint)
         }
         for (i in 1..(rows - 1).toInt()) {
