@@ -1,7 +1,9 @@
 package com.assesment.gameoflife
 
-import androidx.lifecycle.ViewModel
+import com.assesment.base.viewmodel.BaseViewModel
 
-class GameActivityVM : ViewModel() {
+class GameActivityVM(gameWorld: GameWorld) : BaseViewModel() {
+    val game = GameOfLife(gameWorld)
+
 
 }
