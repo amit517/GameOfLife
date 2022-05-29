@@ -3,6 +3,7 @@ package com.assesment.gameoflife
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.assesment.gameoflife.gamehelper.GameWorld
+import javax.inject.Inject
 
 class GameActivityVMF @Inject constructor(private val gameWorld: GameWorld) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
