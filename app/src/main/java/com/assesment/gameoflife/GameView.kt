@@ -14,7 +14,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 @SuppressLint("ViewConstructor")
-class GameViewKotlin(context: Context?, width: Float, height: Float, game: GameOfLife): View(
+class GameView(context: Context?, width: Float, height: Float, game: GameOfLife): View(
         context), ScaleGestureDetector.OnScaleGestureListener {
 
     var gameWorld = game.world

@@ -1,40 +1,36 @@
 package com.assesment.gameoflife
 
-import android.os.Handler
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 
 class GameOfLife(var world: GameWorld) {
     var isRunning = true
-    private val myOffMainThreadHandler: Handler = Handler()
 
     private fun nextGeneration(): GameWorld {
         val nextWorld = world.nextGeneration()
         world = nextWorld
-
         return world
     }
 
-    fun run(gameView: GameViewKotlin) {
+    suspend fun run(gameView: GameView) {
         isRunning = true
         runOffMainThead(gameView)
     }
 
-    private fun runOffMainThead(gameView: GameViewKotlin) = Thread(Runnable {
+    private suspend fun runOffMainThead(gameView: GameView) = withContext(Dispatchers.Main) {
         while (isRunning) {
             generationLifeSpan()
-            myOffMainThreadHandler.post {
-                world = nextGeneration()
-                gameView.nextGeneration(world)
-            }
+            world = nextGeneration()
+            gameView.nextGeneration(world)
         }
-    }).start()
+    }
 
     fun pause() {
         isRunning = false
     }
 
-    private fun generationLifeSpan() = try {
-        Thread.sleep(100)
-    } catch (e: InterruptedException) {
-        e.printStackTrace()
+    private suspend fun generationLifeSpan() = withContext(Dispatchers.Main) {
+        delay(100)
     }
 }

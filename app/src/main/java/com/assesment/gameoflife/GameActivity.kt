@@ -13,23 +13,23 @@ class GameActivity : BaseActivity<ActivityGameBinding>() {
     override fun getLayout(): Int = R.layout.activity_game
 
     override fun initOnCreateView() {
-        val gameView = GameViewKotlin(this, 40F, 60F, viewModel.game)
+        val gameView = GameView(this, 40F, 60F, viewModel.game)
         bindingView.contentFrame.addView(gameView)
         bindingView.btnPlay.setOnClickListener { startOrPauseGame(gameView) }
     }
 
-    private fun startOrPauseGame(gameView: GameViewKotlin) {
+    private fun startOrPauseGame(gameView: GameView) {
         if (viewModel.game.isRunning) pauseGame() else startGame(gameView)
     }
 
-    private fun startGame(gameView: GameViewKotlin) {
-        viewModel.game.run(gameView)
+    private fun startGame(gameView: GameView) {
+        viewModel.runGame(gameView)
         bindingView.btnPlay.setImageDrawable(ContextCompat.getDrawable(this,
             R.drawable.ic_action_pause))
     }
 
     private fun pauseGame() {
-        viewModel.game.pause()
+        viewModel.pause()
         bindingView.btnPlay.setImageDrawable(ContextCompat.getDrawable(this,
             R.drawable.ic_action_play))
     }
